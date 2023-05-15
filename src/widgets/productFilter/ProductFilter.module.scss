@@ -1,0 +1,13 @@
+.wrapper {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: end;
+  gap: 20px
+}
+
+.title {
+  font-weight: bold;
+}

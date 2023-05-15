@@ -1,0 +1,1 @@
+export { WithProducts } from './WithProducts';

@@ -1,0 +1,21 @@
+# Build Stage
+FROM node:16.0.0-alpine as build-stage
+
+ARG NPM_VERSION=8.0.0
+
+RUN npm install -g npm@${NPM_VERSION}
+RUN npm install -g json-server
+
+COPY package.json package-lock.json ./
+
+WORKDIR /app
+
+RUN npm install --frozen-lockfile
+
+COPY . .
+
+RUN npm install react-scripts@5.0.1
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

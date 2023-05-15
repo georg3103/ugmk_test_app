@@ -1,0 +1,14 @@
+# Build Stage
+FROM node:16.0.0-alpine as build-stage
+
+ARG NPM_VERSION=8.0.0
+
+RUN npm install -g npm@${NPM_VERSION}
+
+RUN npm install -g json-server
+
+COPY products.json .
+
+EXPOSE 3001
+
+CMD ["json-server", "--watch", "db.json", "--port", "3000", "--host", "0.0.0.0"]

@@ -1,0 +1,74 @@
+{
+  "name": "ugmk_test_app",
+  "version": "0.1.0",
+  "description": "ugmk_test_app",
+  "private": false,
+  "main": "index.tsx",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/lodash": "^4.14.194",
+    "@types/node": "^18.15.13",
+    "@types/react": "^18.0.38",
+    "@types/react-dom": "^18.0.11",
+    "axios": "^1.3.6",
+    "classnames": "^2.3.2",
+    "highcharts": "^10.3.3",
+    "highcharts-react-official": "^3.2.0",
+    "lodash": "^4.17.21",
+    "query-string": "^6.13.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "react-redux": "^8.0.5",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
+    "use-query-params": "^1.1.9",
+    "web-vitals": "^2.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/georg3103/RMR"
+  },
+  "scripts": {
+    "start": "concurrently -n be,fe -c green,yellow \"npm:start:backend\" \"npm:start:frontend\"",
+    "start:backend": "json-server --watch products.json --port 3001 --host 0.0.0.0",
+    "start:frontend": "react-scripts start",
+    "build": "react-scripts build",
+    "dockerize": "docker build --rm -t ugmk_test_app_image -f Dockerfile.frontend .",
+    "start-container": "docker run --name ugmk_test_app -p 3000:3000 ugmk_test_app_image",
+    "lint:test": "eslint src && stylelint **/*.scss",
+    "dockerize:backend": "docker build -t my-json-server -f Dockerfile.backend .",
+    "lint:fix": "eslint src --fix && stylelint **/*.scss --fix"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@feature-sliced/eslint-config": "^0.1.0-beta.6",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "concurrently": "^7.5.0",
+    "eslint": "^8.39.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-boundaries": "^3.1.1",
+    "eslint-plugin-import": "^2.27.5",
+    "typescript": "^4.0.0"
+  }
+}
