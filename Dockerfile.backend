@@ -11,4 +11,4 @@ COPY products.json .
 
 EXPOSE 3001
 
-CMD ["json-server", "--watch", "db.json", "--port", "3000", "--host", "0.0.0.0"]
+CMD ["json-server", "--watch", "products.json", "--port", "3001", "--host", "0.0.0.0"]

@@ -36,10 +36,11 @@
     "start:backend": "json-server --watch products.json --port 3001 --host 0.0.0.0",
     "start:frontend": "react-scripts start",
     "build": "react-scripts build",
-    "dockerize": "docker build --rm -t ugmk_test_app_image -f Dockerfile.frontend .",
-    "start-container": "docker run --name ugmk_test_app -p 3000:3000 ugmk_test_app_image",
+    "start-container": "docker run -d --network my-network --name json-server-container -p 3001:3001 my-json-server_image && docker run -d --network my-network --name react-app-container -p 3000:3000 ugmk_test_app_image",
+    "dockerize": "concurrently -n be,fe -c green,yellow \"npm:dockerize:backend\" \"npm:dockerize:frontend\"",
+    "dockerize:frontend": "docker build --rm -t ugmk_test_app_image -f Dockerfile.frontend .",
+    "dockerize:backend": "docker build -t my-json-server_image -f Dockerfile.backend .",
     "lint:test": "eslint src && stylelint **/*.scss",
-    "dockerize:backend": "docker build -t my-json-server -f Dockerfile.backend .",
     "lint:fix": "eslint src --fix && stylelint **/*.scss --fix"
   },
   "eslintConfig": {
