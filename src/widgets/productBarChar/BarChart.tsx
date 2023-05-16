@@ -1,6 +1,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
+import { useOffsetData } from 'shared';
 
 type BarChatData = {
   factoryId: number;
@@ -20,10 +21,9 @@ enum Colors {
 }
 
 export const BarChart: React.FC<BarChartProps> = ({ data, onBarClick, dateFormatter }) => {
-  const chartRef = React.useRef<any>(null); // TODO: fix
-  // TODO: move to hook
-  const containerWidth = chartRef.current?.offsetWidth;
-  const chartWidth = containerWidth ? containerWidth * 0.8 : 800;
+  const chartRef = React.useRef<HTMLElement>(null);
+  const containerWidth = useOffsetData(chartRef);
+  const chartWidth = containerWidth ? containerWidth.width * 0.8 : 800;
 
   const getUniqueDates = (data: BarChartProps['data']) => {
     const uniqueDates = data.reduce((dates: string[], entry) => {

@@ -2,16 +2,16 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import React from 'react';
 import { type AggregateProduct } from 'entities/product';
+import { useOffsetData } from 'shared';
 
 type Props = {
   data: Omit<AggregateProduct, 'date'> & { date: string };
 }
 
 export const PieChart: React.FC<Props> = ({ data }) => {
-  const chartRef = React.useRef<any>(null); // TODO: fix
-  // TODO: move to hook
-  const containerWidth = chartRef.current?.offsetWidth;
-  const chartWidth = containerWidth ? containerWidth * 0.8 : 800;
+  const chartRef = React.useRef<HTMLElement>(null);
+  const containerWidth = useOffsetData(chartRef);
+  const chartWidth = containerWidth ? containerWidth.width * 0.8 : 800;
   
   const options: Highcharts.Options = {
     chart: {
