@@ -12,7 +12,7 @@ export const PieChart: React.FC<Props> = ({ data }) => {
   const chartRef = React.useRef<HTMLElement>(null);
   const containerWidth = useOffsetData(chartRef);
   const chartWidth = containerWidth ? containerWidth.width * 0.8 : 800;
-  
+
   const options: Highcharts.Options = {
     chart: {
       type: 'pie',
@@ -35,9 +35,8 @@ export const PieChart: React.FC<Props> = ({ data }) => {
       },
     },
     series: [
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       {
+        type: 'pie',
         name: 'Products',
         data: [
           {
@@ -79,5 +78,5 @@ export const PieChart: React.FC<Props> = ({ data }) => {
     },
   };
 
-  return <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef}/>;
+  return <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef} />;
 };
